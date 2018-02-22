@@ -47,8 +47,8 @@ The distribution of DCS is shown below.
 ![DCS](../images/DSC.png)
 
 And quantitative results for the worst and best case from the test set.
-Notice that the deep learning based segmentation is actually better than the ground truth which was generated using another automatic segmentation tool.
+Notice that the deep learning based segmentation (red outline) is actually better than the ground truth (blue) which was generated using another automatic skull stripping tool.
 
-![Worst case](../images/V6PUI9L8LD.gif)
-
-![Best case](../images/8EPPTJ25XE.gif)
+| Worst Case | Best Case |
+|:----------:|:---------:|
+|![Worst case](../images/V6PUI9L8LD.gif)|![Best case](../images/8EPPTJ25XE.gif)|
