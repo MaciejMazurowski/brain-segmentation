@@ -151,7 +151,7 @@ def plot_dc(labels, values):
     axes = plt.gca()
     axes.set_xlim([0.5, 1.0])
     plt.tight_layout()
-    axes.axvline(m, color='green', linewidth=2)
+    axes.axvline(np.mean(values), color='green', linewidth=2)
 
     plt.savefig('DSC.png', bbox_inches='tight')
     plt.close(fig)
@@ -172,8 +172,7 @@ if __name__ == '__main__':
         imgs_mask_test, imgs_mask_pred, names_test = predict()
         values, labels = evaluate(imgs_mask_test, imgs_mask_pred, names_test)
 
-    m = np.mean(values)
-    print('\nAverage DSC: ' + str(m))
+    print('\nAverage DSC: ' + str(np.mean(values)))
 
     # plot results
     plot_dc(labels, values)
