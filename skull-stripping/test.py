@@ -146,7 +146,7 @@ def plot_dc(labels, values):
     plt.barh(y_pos, values, align='center', alpha=0.5)
     plt.yticks(y_pos, labels)
     plt.xticks(np.arange(0.5, 1.0, 0.05))
-    plt.xlabel('Dice coefficient')
+    plt.xlabel('Dice coefficient', fontsize='x-large')
     plt.axes().xaxis.grid(color='black', linestyle='-', linewidth=0.5)
     axes = plt.gca()
     axes.set_xlim([0.5, 1.0])
