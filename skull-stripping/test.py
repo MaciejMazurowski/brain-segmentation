@@ -153,7 +153,7 @@ def plot_dc(labels, values):
     plt.tight_layout()
     axes.axvline(m, color='green', linewidth=2)
 
-    plt.savefig('DC.png', bbox_inches='tight')
+    plt.savefig('DSC.png', bbox_inches='tight')
     plt.close(fig)
 
 
@@ -173,7 +173,7 @@ if __name__ == '__main__':
         values, labels = evaluate(imgs_mask_test, imgs_mask_pred, names_test)
 
     m = np.mean(values)
-    print('\nAverage DC: ' + str(m))
+    print('\nAverage DSC: ' + str(m))
 
     # plot results
     plot_dc(labels, values)

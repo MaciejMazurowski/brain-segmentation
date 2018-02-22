@@ -58,7 +58,7 @@ def train():
               batch_size=batch_size,
               epochs=epochs,
               shuffle=True,
-              callbacks=[model_checkpoint, training_log])
+              callbacks=[training_log])
 
     if not os.path.exists(weights_path):
         os.mkdir(weights_path)
