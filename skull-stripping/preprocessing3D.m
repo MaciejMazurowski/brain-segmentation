@@ -1,13 +1,19 @@
 function [ slices, mask] = preprocessing3D( slices, mask, destination_path, prefix )
-%PREPROCESSING3D Implements preprocessing of a 3D volume containing slices of a FLAIR modality together with its
-%segmentation mask. Needs a path to the folder (string) where you want to save the result and a filename prefix (string)
-%to which a slice number is appended. The images will be saved in tiff format.
+%PREPROCESSING3D Implements preprocessing of a 3D volume containing slices 
+%of a FLAIR modality together with its segmentation mask. Needs a path to 
+%the folder (string) where you want to save the result and a filename 
+%prefix (string) to which a slice number is appended. The images will be 
+%saved in tiff format.
 %
-%   Examples:
+%Examples:
 %
 %   Basic usecase:
+%
 %       [slices, mask] = preprocessing3D(slices, mask, '/media/username/data/train/', 'patient_001');
-%   If you don't have a segmentation mask and want to preprocess test images for inference, pass a zeros matrix instead:
+%   
+%   If you don't have a segmentation mask and want to preprocess test 
+%   images for inference, pass a zeros matrix instead:
+%
 %       [slices, mask] = preprocessing3D(slices, zeros(size(slices)), '/media/username/data/train/', 'patient_001');
 
 
@@ -17,8 +23,10 @@ function [ slices, mask] = preprocessing3D( slices, mask, destination_path, pref
     if min(size(slices(:, :, 1))) ~= 256
 
         scale = 256 / min(size(slice));
-        slices = imresize(slices, scale);                   % resize images to 256 with bicubic interpolation
-        mask = imresize(mask, scale, 'method', 'nearest');  % and mask with NN interpolation
+        % resize images to 256 with bicubic interpolation
+        slices = imresize(slices, scale);
+        % and mask with NN interpolation
+        mask = imresize(mask, scale, 'method', 'nearest');
 
     end
 
