@@ -14,7 +14,7 @@ function [ slices, mask] = preprocessing3D( slices, mask, destination_path, pref
     mask(mask ~= 0) = 1;
 
     % resize to have smaller dimension equal 256 pixels
-    if min(size(volume(:, :, 1))) ~= 256
+    if min(size(slices(:, :, 1))) ~= 256
 
         scale = 256 / min(size(slice));
         slices = imresize(slices, scale);                   % resize images to 256 with bicubic interpolation
@@ -37,7 +37,7 @@ function [ slices, mask] = preprocessing3D( slices, mask, destination_path, pref
     % get histogram of an image volume
     [N, edges] = histcounts(slices(:), 'BinWidth', 2);
 
-    % rescale the intensity peak to value be at value 100
+    % rescale the intensity peak to be at value 100
     minimum = edges(find(edges > prctile(slices(:), 2), 1));
 
     diffN = zeros(size(N));
@@ -48,7 +48,7 @@ function [ slices, mask] = preprocessing3D( slices, mask, destination_path, pref
     f = find(diffN(s:end) > 1.0, 5);
     start = s + f(5);
 
-    [val, ind] = max(N(start:end));
+    [~, ind] = max(N(start:end));
     peak_val = edges(ind + start - 1);
     maximum = minimum + ((peak_val - minimum) * 2.55);
 
