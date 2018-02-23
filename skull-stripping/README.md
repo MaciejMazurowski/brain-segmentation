@@ -37,18 +37,18 @@ python test.py
 
 ### Results
 
-Training log for a single random 10% train/test split:
+Training log for a random 5 test cases split:
 
 ![training](../images/training.png)
 
-The average Dice similarity coefficient (DSC) for this split was 94.11%.
+The average Dice similarity coefficient (DSC) for this split was 95.72%.
 The distribution of DCS is shown below.
 
 ![DCS](../images/DSC.png)
 
-And quantitative results for the worst and best case from the test set.
-Notice that the deep learning based segmentation (red outline) is actually better than the ground truth (blue) which was generated using another automatic skull stripping tool.
+And quantitative results for the worst (94.76% DSC) and best case (96.62% DSC) from the test set.
+Notice that the reason for suboptimal performance of the deep learning based segmentation (red outline) is that the ground truth (blue outline) is also imperfect since it was generated using another automatic skull stripping tool.
 
 | Worst Case | Best Case |
 |:----------:|:---------:|
-|![Worst case](../images/V6PUI9L8LD.gif)|![Best case](../images/8EPPTJ25XE.gif)|
+|![Worst case](../images/DU_5851.gif)|![Best case](../images/CS_6669.gif)|
