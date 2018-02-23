@@ -1,4 +1,4 @@
-function [ slices, mask] = preprocessing3D( slices, mask )
+function [ slices, mask ] = preprocessing3D( slices, mask )
 %PREPROCESSING3D Implements preprocessing of a 3D volume containing slices 
 %of a FLAIR, pre-contrast or post-contrast modality together with its 
 %segmentation mask.
@@ -69,7 +69,7 @@ function [ slices, mask] = preprocessing3D( slices, mask )
     slices(slices > maximum) = maximum;
     slices = (slices - minimum) ./ (maximum - minimum);
 
-    % save preprocessed images
+    % preprocessed images
     slices = im2uint8(slices);
     mask = im2uint8(mask);
 

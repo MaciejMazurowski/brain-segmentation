@@ -22,6 +22,13 @@ They are based on the same model architecture but can be used separately.
 sudo pip install requirements.txt
 ```
 
+
+## Data
+
+```
+TODO
+```
+
 ## U-Net architecture
 
 The figure below shows a U-Net architecture implemented in this repository.
