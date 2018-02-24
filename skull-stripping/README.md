@@ -23,14 +23,14 @@ python train.py
 ```
 
 #### Testing
-To run the inference, you need to setup some variables defined at the top of the `test.py` script:
+To run the inference, you need to set up some variables defined at the top of the `test.py` script:
 
 - `weights_path` - path to the trained weights
 - `train_images_path` - folder containing training images to compute the mean and standard deviation for data normalization; if you pass your own  mean and standard deviation to the `test` function, this variable is not used
 - `test_images_path` - folder with test images for prediction; it must contain corresponding mask files as well, however, they can be dummy (all zeros)
 - `predictions_path` - folder for saving predicted and ground truth segmentation outlines (will be created if it doesn't exist)
 
-When all variables are setup, run the inference using
+When all variables are set up, run the inference using
 ```
 python test.py
 ```
@@ -39,16 +39,16 @@ python test.py
 
 Training log for a random 5 test cases split:
 
-![training](../images/training.png)
+![training](training.png)
 
 The average Dice similarity coefficient (DSC) for this split was 95.72%.
 The distribution of DCS is shown below.
 
-![DCS](../images/DSC.png)
+![DCS](DSC.png)
 
-And quantitative results for the worst (94.76% DSC) and best case (96.62% DSC) from the test set.
+And some qualitative results for the worst (94.76% DSC) and best case (96.62% DSC) from the test set before postprocessing.
 Notice that the reason for suboptimal performance of the deep learning based segmentation (red outline) is that the ground truth (blue outline) is also imperfect since it was generated using another automatic skull stripping tool.
 
 | Worst Case | Best Case |
 |:----------:|:---------:|
-|![Worst case](../images/DU_5851.gif)|![Best case](../images/CS_6669.gif)|
+|![Worst case](DU_5851.gif)|![Best case](CS_6669.gif)|

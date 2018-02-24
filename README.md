@@ -33,4 +33,4 @@ TODO
 
 The figure below shows a U-Net architecture implemented in this repository.
 
-![unet](images/unet.png)
+![unet](unet.png)
