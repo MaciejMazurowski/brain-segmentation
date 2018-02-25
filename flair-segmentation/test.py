@@ -26,7 +26,7 @@ predictions_path = './predictions/'
 gpu = '0'
 
 
-def predict(mean=30.0, std=50.0):
+def predict(mean=20.0, std=43.0):
     # load and normalize data
     if mean == 0.0 and std == 1.0:
         imgs_train, _, _ = load_data(train_images_path)
@@ -175,6 +175,4 @@ if __name__ == '__main__':
     print('\nAverage DSC: ' + str(np.mean(values)))
 
     # plot results
-    for i in range(len(labels)):
-        labels[i] = labels[i][5:12]
     plot_dc(labels, values)

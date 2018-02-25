@@ -1,6 +1,7 @@
 ## Deep learning based skull stripping
 
 This folder contains an implementation of our deep learning based skull removal algorithm based on FLAIR modality MRI.
+It can be used to preprocess MRI images, train or fine-tune the network for skull stripping or apply it to a custom dataset.
 
 ### Usage
 
@@ -26,7 +27,7 @@ python train.py
 To run the inference, you need to set up some variables defined at the top of the `test.py` script:
 
 - `weights_path` - path to the trained weights
-- `train_images_path` - folder containing training images to compute the mean and standard deviation for data normalization; if you pass your own  mean and standard deviation to the `test` function, this variable is not used
+- `train_images_path` - folder containing training images to compute the mean and standard deviation for data normalization; if you pass your own mean and standard deviation to the `test` function, this variable is not used
 - `test_images_path` - folder with test images for prediction; it must contain corresponding mask files as well, however, they can be dummy (all zeros)
 - `predictions_path` - folder for saving predicted and ground truth segmentation outlines (will be created if it doesn't exist)
 
@@ -35,8 +36,10 @@ When all variables are set up, run the inference using
 python test.py
 ```
 
-### Results
+If you want to use our trained weights for inference, you should use mean and standard deviation values for normalization computed on our training set.
+They are the default parameter values used in the `test` function of `test.py` script.
 
+### Results
 Training log for a random 5 test cases split:
 
 ![training](training.png)

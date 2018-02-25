@@ -18,7 +18,7 @@ from net import unet
 
 train_images_path = './data/train/'
 valid_images_path = './data/valid/'
-init_weights_path = '../skull-stripping/weights_128.h5'
+init_weights_path = './weights_128.h5'
 weights_path = '.'
 log_path = '.'
 
