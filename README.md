@@ -36,9 +36,8 @@ The figure below shows a U-Net architecture implemented in this repository.
 
 ## Trained weights
 
-```
-TODO
-```
+To download trained weights use `download_weights.sh` script located in both skull stripping or flair segmentation folder.
+It downloads *.h5 file with weights corresponding to training log shown in each task specific folder and responsible for the results reported there.
 
 ## Results
 

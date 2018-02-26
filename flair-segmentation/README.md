@@ -43,6 +43,11 @@ python test.py
 If you want to use our trained weights for inference, you should use mean and standard deviation values for normalization computed on our training set.
 They are the default parameter values used in the `test` function of `test.py` script.
 
+Trained weights can be downloaded using provided script
+```
+./download_weights.sh 
+```
+
 ### Results
 The results presented here refer to the network fine-tuned for 64 epochs and initialized with the weights for skull stripping task based on FLAIR modality only.
 This training procedure requires to have the same training/test split for both FLAIR segmentaiton and skull stripping tasks.

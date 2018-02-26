@@ -39,6 +39,11 @@ python test.py
 If you want to use our trained weights for inference, you should use mean and standard deviation values for normalization computed on our training set.
 They are the default parameter values used in the `test` function of `test.py` script.
 
+Trained weights can be downloaded using provided script
+```
+./download_weights.sh 
+```
+
 ### Results
 Training log for a random 5 test cases split:
 
