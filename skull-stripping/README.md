@@ -3,6 +3,23 @@
 This folder contains an implementation of our deep learning based skull removal algorithm based on FLAIR modality MRI.
 It can be used to preprocess MRI images, train or fine-tune the network for skull stripping or apply it to a custom dataset.
 
+### Results
+Some qualitative results for the worst (94.76% DSC) and best case (96.62% DSC) from the test set before postprocessing.
+Notice that the reason for suboptimal performance of the deep learning based segmentation (red outline) is that the ground truth (blue outline) is also imperfect since it was generated using another automatic skull stripping tool.
+
+| Worst Case | Best Case |
+|:----------:|:---------:|
+|![Worst case](DU_5851.gif)|![Best case](CS_6669.gif)|
+
+The average Dice similarity coefficient (DSC) for this split was 95.72%.
+The distribution of DCS is shown below.
+
+![DCS](DSC.png)
+
+Training log for a random 5 test cases split:
+
+![training](training.png)
+
 ### Usage
 
 #### Preprocessing
@@ -43,20 +60,3 @@ Trained weights can be downloaded using provided script
 ```
 ./download_weights.sh 
 ```
-
-### Results
-Training log for a random 5 test cases split:
-
-![training](training.png)
-
-The average Dice similarity coefficient (DSC) for this split was 95.72%.
-The distribution of DCS is shown below.
-
-![DCS](DSC.png)
-
-And some qualitative results for the worst (94.76% DSC) and best case (96.62% DSC) from the test set before postprocessing.
-Notice that the reason for suboptimal performance of the deep learning based segmentation (red outline) is that the ground truth (blue outline) is also imperfect since it was generated using another automatic skull stripping tool.
-
-| Worst Case | Best Case |
-|:----------:|:---------:|
-|![Worst case](DU_5851.gif)|![Best case](CS_6669.gif)|
