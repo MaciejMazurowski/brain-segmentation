@@ -51,6 +51,8 @@ The figure below shows a U-Net architecture implemented in this repository.
 
 ## Data
 
+![brain-mri-lgg](brain-mri-lgg.png)
+
 ```
 TODO
 ```
