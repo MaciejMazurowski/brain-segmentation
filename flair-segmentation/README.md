@@ -3,6 +3,29 @@
 This folder contains an implementation of a FLAIR abnormality segmentation in brain MRI using U-Net like architecture.
 It can be used to preprocess MRI images, train the network for tumor segmentation or obtain segmentation predictions of  FLAIR abnormality in a custom dataset (not expected to work outstandingly well without prior fine-tuning).
 
+### Results
+The results presented here refer to the network fine-tuned for 64 epochs and initialized with the weights for skull stripping task based on FLAIR modality only.
+This training procedure requires to have the same training/test split for both FLAIR segmentaiton and skull stripping tasks.
+It was not used in the application described in our paper.
+Still, it makes the developed architecture, trained weights, and code more widely applicable.
+
+Some qualitative results for the worst (80.74% DSC) and best case (92.37% DSC) from the test set before postprocessing.
+Blue outline corresponds to ground truth and red to automatic segmentation output.
+Images show FLAIR modality after preprocessing and skull stripping.
+
+| Worst Case | Best Case |
+|:----------:|:---------:|
+|![Worst case](DU_7306.gif)|![Best case](DU_5851.gif)|
+
+The average Dice similarity coefficient (DSC) for this split was 88.37%.
+The distribution of DCS is shown below.
+
+![DCS](DSC.png)
+
+Training log for a random 5 test cases split (the same as in skull stripping):
+
+![training](training.png)
+
 ### Usage
 
 #### Preprocessing
@@ -47,26 +70,3 @@ Trained weights can be downloaded using provided script
 ```
 ./download_weights.sh 
 ```
-
-### Results
-The results presented here refer to the network fine-tuned for 64 epochs and initialized with the weights for skull stripping task based on FLAIR modality only.
-This training procedure requires to have the same training/test split for both FLAIR segmentaiton and skull stripping tasks.
-It was not used in the application described in our paper.
-Still, it makes the developed architecture, trained weights and code more widely applicable.
-
-Training log for a random 5 test cases split (the same as in skull stripping):
-
-![training](training.png)
-
-The average Dice similarity coefficient (DSC) for this split was 88.37%.
-The distribution of DCS is shown below.
-
-![DCS](DSC.png)
-
-And some qualitative results for the worst (80.74% DSC) and best case (92.37% DSC) from the test set before postprocessing.
-Blue outline corresponds to ground truth and red to automatic segmentation output.
-Images show FLAIR modality after preprocessing and skull stripping.
-
-| Worst Case | Best Case |
-|:----------:|:---------:|
-|![Worst case](DU_7306.gif)|![Best case](DU_5851.gif)|
