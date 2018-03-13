@@ -22,24 +22,15 @@ They are based on the same model architecture but can be used separately.
 sudo pip install -r requirements.txt
 ```
 
-## Data
-
-```
-TODO
-```
-
-## U-Net architecture
-
-The figure below shows a U-Net architecture implemented in this repository.
-
-![unet](unet.png)
-
-## Trained weights
-
-To download trained weights use `download_weights.sh` script located in both skull stripping or flair segmentation folder.
-It downloads *.h5 file with weights corresponding to training log shown in each task specific folder and responsible for the results reported there.
-
 ## Results
+
+Below we show qualitative results for the average and median case.
+Blue outline corresponds to ground truth and red to the final automatic segmentation output.
+Images show FLAIR modality after preprocessing and skull stripping.
+
+| Average Case | Median Case |
+|:----------:|:---------:|
+|![Average case](CS_6669.gif)|![Median case](HT_7473.gif)|
 
 The distribution of Dice similarity coefficient (DSC) for the whole dataset of 110 cases used in our study.
 
@@ -47,10 +38,19 @@ The distribution of Dice similarity coefficient (DSC) for the whole dataset of 1
 
 The red vertical line corresponds to mean DSC (83.60%) and the green one to median DSC (87.33%).
 
-Below we show qualitative results for average and median cases.
-Blue outline corresponds to ground truth and red to the final automatic segmentation output.
-Images show FLAIR modality after preprocessing and skull stripping.
+## Trained weights
 
-| Average Case | Median Case |
-|:----------:|:---------:|
-|![Average case](CS_6669.gif)|![Median case](HT_7473.gif)|
+To download trained weights use `download_weights.sh` script located in both skull stripping or flair segmentation folder.
+It downloads *.h5 file with weights corresponding to training log shown in each task specific folder and responsible for the results reported there.
+
+## U-Net architecture
+
+The figure below shows a U-Net architecture implemented in this repository.
+
+![unet](unet.png)
+
+## Data
+
+```
+TODO
+```
