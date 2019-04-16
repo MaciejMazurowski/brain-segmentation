@@ -1,8 +1,8 @@
 from __future__ import print_function
 
-import numpy as np
 import os
 
+import numpy as np
 from skimage.io import imread
 from skimage.transform import rescale
 from skimage.transform import rotate
@@ -30,21 +30,22 @@ def load_data(path):
     """
     images_list = os.listdir(path)
     total_count = len(images_list) / 2
-    images = np.ndarray((total_count, image_rows, image_cols,
-                         channels * modalities), dtype=np.uint8)
+    images = np.ndarray(
+        (total_count, image_rows, image_cols, channels * modalities), dtype=np.uint8
+    )
     masks = np.ndarray((total_count, image_rows, image_cols), dtype=np.uint8)
     names = np.chararray(total_count, itemsize=64)
 
     i = 0
     for image_name in images_list:
-        if 'mask' in image_name:
+        if "mask" in image_name:
             continue
 
-        names[i] = image_name.split('.')[0]
-        slice_number = int(names[i].split('_')[-1])
-        patient_id = '_'.join(names[i].split('_')[:-1])
+        names[i] = image_name.split(".")[0]
+        slice_number = int(names[i].split("_")[-1])
+        patient_id = "_".join(names[i].split("_")[:-1])
 
-        image_mask_name = image_name.split('.')[0] + '_mask.tif'
+        image_mask_name = image_name.split(".")[0] + "_mask.tif"
         img = imread(os.path.join(path, image_name), as_grey=(modalities == 1))
         img_mask = imread(os.path.join(path, image_mask_name), as_grey=True)
 
@@ -64,17 +65,17 @@ def load_data(path):
 
         i += 1
 
-    images = images.astype('float32')
+    images = images.astype("float32")
     masks = masks[..., np.newaxis]
-    masks = masks.astype('float32')
+    masks = masks.astype("float32")
     masks /= 255.
 
     return images, masks, names
 
 
-def oversample(images, masks):
+def oversample(images, masks, augment=False):
     """
-    Repeats 2 times every slice with nonzero mask
+    Repeats 2 times every slice with nonzero mask.
 
         Args:
             np.ndarray: array of images
@@ -90,6 +91,15 @@ def oversample(images, masks):
         if np.max(masks[i]) < 1:
             continue
 
+        if augment:
+            image_a, mask_a = augmentation_rotate(images[i], masks[i])
+            images_o.append(image_a)
+            masks_o.append(mask_a)
+            image_a, mask_a = augmentation_scale(images[i], masks[i])
+            images_o.append(image_a)
+            masks_o.append(mask_a)
+            continue
+
         for _ in range(2):
             images_o.append(images[i])
             masks_o.append(masks[i])
@@ -100,10 +110,9 @@ def oversample(images, masks):
     return np.vstack((images, images_o)), np.vstack((masks, masks_o))
 
 
-
 def read_slice(path, patient_id, slice):
     img = np.zeros((image_rows, image_cols))
-    img_name = patient_id + '_' + str(slice) + '.tif'
+    img_name = patient_id + "_" + str(slice) + ".tif"
     img_path = os.path.join(path, img_name)
 
     try:
@@ -112,3 +121,45 @@ def read_slice(path, patient_id, slice):
         pass
 
     return img[..., np.newaxis]
+
+
+def augmentation_rotate(img, img_mask):
+    angle = np.random.uniform(5.0, 15.0) * np.random.choice([-1.0, 1.0], 1)[0]
+
+    img = rotate(img, angle, resize=False, order=3, preserve_range=True)
+    img_mask = rotate(img_mask, angle, resize=False, order=0, preserve_range=True)
+
+    return img, img_mask
+
+
+def augmentation_scale(img, img_mask):
+    scale = 1.0 + np.random.uniform(0.04, 0.08) * np.random.choice([-1.0, 1.0], 1)[0]
+
+    img = rescale(img, scale, order=3, preserve_range=True)
+    img_mask = rescale(img_mask, scale, order=0, preserve_range=True)
+    if scale > 1:
+        img = center_crop(img, image_rows, image_cols)
+        img_mask = center_crop(img_mask, image_rows, image_cols)
+    else:
+        img = zeros_pad(img, image_rows)
+        img_mask = zeros_pad(img_mask, image_rows)
+
+    return img, img_mask
+
+
+def center_crop(img, cropx, cropy):
+    startx = img.shape[1] // 2 - (cropx // 2)
+    starty = img.shape[0] // 2 - (cropy // 2)
+    return img[starty : starty + cropy, startx : startx + cropx]
+
+
+def zeros_pad(img, size):
+    pad_before = int(round(((size - img.shape[0]) / 2.0)))
+    pad_after = size - img.shape[0] - pad_before
+    if len(img.shape) > 2:
+        return np.pad(
+            img,
+            ((pad_before, pad_after), (pad_before, pad_after), (0, 0)),
+            mode="constant",
+        )
+    return np.pad(img, (pad_before, pad_after), mode="constant")
