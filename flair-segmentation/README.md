@@ -70,3 +70,13 @@ Trained weights can be downloaded using provided script
 ```
 ./download_weights.sh 
 ```
+
+### Troubleshooting
+
+#### AttributeError: 'module' object has no attribute 'rolling_count'
+
+Try updating dask (related issue: [tflearn/issues/766](https://github.com/tflearn/tflearn/issues/766)):
+
+```
+sudo pip install dask --upgrade
+```
