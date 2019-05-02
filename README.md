@@ -54,5 +54,5 @@ The figure below shows a U-Net architecture implemented in this repository.
 ![brain-mri-lgg](brain-mri-lgg.png)
 
 ```
-TODO
+https://www.kaggle.com/mateuszbuda/lgg-mri-segmentation
 ```
