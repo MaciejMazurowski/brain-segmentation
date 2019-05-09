@@ -1,6 +1,6 @@
 # Brain segmentation
 
-This is a source code for the deep learning segmentation used in the paper Association of genomic subtypes of lower-grade gliomas with shape features automatically extracted by a deep learning algorithm.
+This is a source code for the deep learning segmentation used in the paper [Association of genomic subtypes of lower-grade gliomas with shape features automatically extracted by a deep learning algorithm.](https://doi.org/10.1016/j.compbiomed.2019.05.002)
 It employs a U-Net like network for skull stripping and FLAIR abnormality segmentation.
 This repository contains a set of functions for data preprocessing (MatLab), training and inference (Python).
 Weights for trained models are provided and can be used for deep learning based skull stripping or fine-tuning on a different dataset.
