@@ -18,6 +18,8 @@ If you use our model or weights, please cite:
 }
 ```
 
+Developed by [mateuszbuda](https://github.com/mateuszbuda).
+
 The repository is divided into two folders.
 One for skull stripping and one for FLAIR abnormality segmentation.
 They are based on the same model architecture but can be used separately.
